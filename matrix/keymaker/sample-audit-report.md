@@ -10,7 +10,7 @@ Interest is calculated as
 It is possible for the calculated interest to be zero for principal tokens with small decimals, such as EURS (2 decimals). Accumulated interest can therefore be zero by borrowing / repaying tiny amounts frequently.
 ```
 
-Proof of Concept
+## Proof of Concept
 Assuming a borrow interest rate of 5% (5e17) and principal borrow amount of 10_000 EURS (10_000 * 1e2 = 1_000_000), the interest rate calculated would be 0 if principal updates are made every minute (around 63s).
 
 ```
@@ -19,5 +19,5 @@ Assuming a borrow interest rate of 5% (5e17) and principal borrow amount of 10_0
 While plausible, this method of interest evasion isn’t as economical for tokens of larger decimals like USDC and USDT (6 decimals).
 ```
 
-Recommended Mitigation Steps
+## Recommended Mitigation Steps
 Take caution when allowing an asset to be borrowed. Alternatively, scale the principal amount to precision (1e18) amounts.
