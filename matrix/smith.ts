@@ -5,7 +5,7 @@ import { HumanChatMessage, SystemChatMessage } from 'langchain/schema'
 require('dotenv').config()
 
 const solFilePath = './contracts/Contract1.sol'
-const sampleAuditReportPath = './smith/references/sample-audit-report.md'
+const sampleAuditReportPath = './matrix/keymaker/sample-audit-report.md'
 
 export const main = async () => {
   const chat = new ChatOpenAI({
