@@ -12,7 +12,12 @@ import { BufferMemory } from 'langchain/memory'
 
 require('dotenv').config()
 
-const solFilePath = './contracts/Contract1.sol'
+const basePath = './matrix/zion'
+
+const target = `Contract1`
+
+const solFilePath = `./contracts/${target}.sol`
+
 const sampleAuditReportPath = './matrix/keymaker/sample-audit-report.md'
 
 export const run = async () => {
@@ -50,15 +55,19 @@ export const run = async () => {
   const response1 = await chain.call({
     input: `${instruction1_1}\n${solFile}\n${instruction1_2}\n${instruction1_3}`,
   })
-  console.log(response1)
+  console.log(response1.response)
 
   const response2 = await chain.call({
     input: `${instruction2}\n${sampleAuditReport}}`,
   })
-  console.log(response2)
+  console.log(response2.response)
+
+  if (!fs.existsSync(`${basePath}/${target}`)) {
+    fs.mkdirSync(`${basePath}/${target}`, { recursive: true });
+  }
 
   try {
-    fs.writeFileSync('./matrix/zion/bug-report.md', response2.response);
+    fs.writeFileSync(`${basePath}/${target}/bug-report.md`, response2.response);
     console.log('Successfully written to the file.');
   } catch (err) {
       console.error('Error occurred:', err);

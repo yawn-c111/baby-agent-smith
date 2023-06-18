@@ -1,7 +1,7 @@
 # [H-01] Reentrancy Vulnerability in Withdraw Function
-Submitted by Audit Professional
+Submitted by Baby Agent Smith
 
-EtherStore.sol#L12-L18
+**File:** EtherStore.sol#L12-L18
 
 The withdraw() function in the EtherStore contract is vulnerable to a reentrancy attack due to the order of operations. The function first sends the Ether to the user and then sets their balance to 0. This allows an attacker to repeatedly call the withdraw() function before their balance is set to 0, draining the contract's Ether.
 
