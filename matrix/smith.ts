@@ -17,21 +17,23 @@ export const main = async () => {
     'あなたはスマートコントラクトの監査のプロです。'
   )
 
-  const instruction1 = '以下のスマートコントラクトをステップバイステップで理解して。次に、コードを網羅的に監査して。その後、バグがあったら報告して。'
+  const instruction1 = '以下のスマートコントラクトをステップバイステップで理解して。'
+
+  const instruction2 = '次に、コードを網羅的かつツリー構造で考えて監査して。その後、バグがあったら報告して。'
+
+  const instruction3 = '最後に発見したバグのレポートを以下のサンプルに従ってマークダウン形式で書いて。'
 
   const solFile: string = fs.readFileSync(solFilePath, 'utf8')
+
+  const sampleAuditReport: string = fs.readFileSync(sampleAuditReportPath, 'utf8')
 
   const response = await chat.call([
     initialSystemMessage,
     new HumanChatMessage(
-      `${instruction1}\n${solFile}`
+      `${instruction1}\n${solFile}\n${instruction2}\n${instruction3}\n${sampleAuditReport}}`
     ),
   ])
   console.log(response)
-
-  const sampleAuditReport: string = fs.readFileSync(sampleAuditReportPath, 'utf8')
-
-  console.log(sampleAuditReport)
 }
 
 main().catch((error) => {
