@@ -1,5 +1,5 @@
 # [H-01] Reentrancy Vulnerability in Withdraw Function
-Submitted by Agent Smith
+Submitted by Audit Professional
 
 EtherStore.sol#L12-L18
 
