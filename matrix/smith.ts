@@ -21,6 +21,7 @@ const solFilePath = `./contracts/${target}.sol`
 const sampleAuditReportPath = './matrix/keymaker/sample-audit-report.md'
 
 export const run = async () => {
+  console.log('\x1b[32m%s\x1b[0m', 'Your Text')
   const chat = new ChatOpenAI({
     streaming: true,
     modelName: 'gpt-4',
@@ -58,22 +59,22 @@ export const run = async () => {
   }, [
     {
       handleLLMNewToken(token: string) {
-        process.stdout.write(token);
+        process.stdout.write(`\x1b[32m${token}\x1b[0m`);
       },
     },
   ])
-  console.log(response1.token)
+  console.log('\x1b[32m%s\x1b[0m', response1.token)
 
   const response2 = await chain.call({
     input: `${instruction2}\n${sampleAuditReport}}`,
   }, [
     {
       handleLLMNewToken(token: string) {
-        process.stdout.write(token);
+        process.stdout.write(`\x1b[32m${token}\x1b[0m`);
       },
     },
   ])
-  console.log(response2.token)
+  console.log('\x1b[32m%s\x1b[0m', response2.token)
 
   if (!fs.existsSync(`${basePath}/${target}`)) {
     fs.mkdirSync(`${basePath}/${target}`, { recursive: true });
