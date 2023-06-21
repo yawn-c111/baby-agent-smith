@@ -27,15 +27,15 @@ export const run = async () => {
     temperature: 0,
   })
 
-  const initialSystemMessage = 'You are a smart contract audit professional'
+  const initialSystemMessage = 'あなたはスマートコントラクトの監査のプロフェッショナルです。'
 
-  const instruction1_1 = 'Understand the following smart contracts step by step.'
+  const instruction1_1 = '以下のスマートコントラクトをステップバイステップで理解して。'
 
-  const instruction1_2 = 'Next, think of the code in a comprehensive and tree structure and audit it. Then report any bugs.'
+  const instruction1_2 = '次に、コードを包括的かつツリー構造で考え、それを監査して。そして、バグがあれば報告して。'
 
-  const instruction1_3 = `Next, classify the bugs found into H, M, and L according to the level of vulnerability.`
+  const instruction1_3 = `次に、見つかったバグを脆弱性のレベルに応じてH、M、Lに分類して。`
 
-  const instruction2 = 'Write a report of the bugs you found in markdown format according to the sample below.'
+  const instruction2 = '以下のサンプルに従って、発見したバグのレポートをマークダウン形式で書いて。'
 
   const solFile: string = fs.readFileSync(solFilePath, 'utf8')
 
