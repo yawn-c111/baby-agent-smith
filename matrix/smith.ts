@@ -22,6 +22,7 @@ const sampleAuditReportPath = './matrix/keymaker/sample-audit-report.md'
 
 export const run = async () => {
   const chat = new ChatOpenAI({
+    streaming: true,
     modelName: 'gpt-4',
     temperature: 0,
   })
@@ -54,13 +55,25 @@ export const run = async () => {
 
   const response1 = await chain.call({
     input: `${instruction1_1}\n${solFile}\n${instruction1_2}\n${instruction1_3}`,
-  })
-  console.log(response1.response)
+  }, [
+    {
+      handleLLMNewToken(token: string) {
+        process.stdout.write(token);
+      },
+    },
+  ])
+  console.log(response1.token)
 
   const response2 = await chain.call({
     input: `${instruction2}\n${sampleAuditReport}}`,
-  })
-  console.log(response2.response)
+  }, [
+    {
+      handleLLMNewToken(token: string) {
+        process.stdout.write(token);
+      },
+    },
+  ])
+  console.log(response2.token)
 
   if (!fs.existsSync(`${basePath}/${target}`)) {
     fs.mkdirSync(`${basePath}/${target}`, { recursive: true });
