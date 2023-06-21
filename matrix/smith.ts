@@ -21,7 +21,6 @@ const solFilePath = `./contracts/${target}.sol`
 const sampleAuditReportPath = './matrix/keymaker/sample-audit-report.md'
 
 export const run = async () => {
-  console.log('\x1b[32m%s\x1b[0m', 'Your Text')
   const chat = new ChatOpenAI({
     streaming: true,
     modelName: 'gpt-4',
