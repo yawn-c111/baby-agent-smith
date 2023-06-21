@@ -14,7 +14,7 @@ require('dotenv').config()
 
 const basePath = './matrix/zion'
 
-const target = `Contract1`
+const target = `Contract5`
 
 const solFilePath = `./contracts/${target}.sol`
 

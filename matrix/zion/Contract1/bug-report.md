@@ -3,7 +3,7 @@ Submitted by Baby Agent Smith
 
 **File:** EtherStore.sol#L12-L18
 
-The withdraw() function in the EtherStore contract is vulnerable to a reentrancy attack due to the order of operations. The function first sends the Ether to the user and then sets their balance to 0. This allows an attacker to repeatedly call the withdraw() function before their balance is set to 0, draining the contract's Ether.
+The `withdraw()` function in the EtherStore contract is vulnerable to a reentrancy attack due to the order of operations. The function first sends the Ether to the user and then sets their balance to 0. This allows an attacker to repeatedly call the `withdraw()` function before their balance is set to 0, draining the contract's Ether.
 
 ```solidity
 function withdraw() public {
@@ -19,7 +19,7 @@ function withdraw() public {
 
 ## Proof of Concept
 
-An attacker can create a malicious contract that calls the withdraw() function in a fallback function, allowing them to repeatedly withdraw their balance before it is set to 0.
+An attacker can create a malicious contract that calls the `withdraw()` function in a fallback function, allowing them to repeatedly withdraw their balance before it is set to 0.
 
 ```solidity
 contract MaliciousContract {
@@ -44,9 +44,9 @@ contract MaliciousContract {
 
 ## Recommended Mitigation Steps
 
-To fix the reentrancy vulnerability, follow the Checks-Effects-Interactions pattern. Set the user's balance to 0 before sending the Ether. This will prevent the attacker from repeatedly calling the withdraw() function and exploiting the reentrancy vulnerability.
+To fix the reentrancy vulnerability, follow the Checks-Effects-Interactions pattern. Set the user's balance to 0 before sending the Ether. This will prevent the attacker from repeatedly calling the `withdraw()` function and exploiting the reentrancy vulnerability.
 
-Here's the updated withdraw() function:
+Here's the updated `withdraw()` function:
 
 ```solidity
 function withdraw() public {
